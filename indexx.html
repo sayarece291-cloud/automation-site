@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://www.google.com/favicon.ico">
+  <title>ATI — Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --white: #F8F8F6;
+      --grey-1: #1A1A1A;
+      --grey-2: #2C2C2C;
+      --grey-3: #6B6B6B;
+      --grey-4: #B0B0B0;
+      --accent: #1A6CFF;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .glow {
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(26,108,255,0.13) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-badge {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey-3);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    /* LANG TOGGLE */
+    .lang-toggle {
+      display: flex;
+      background: var(--grey-1);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--grey-3);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 20px;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 24px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .sub {
+      font-size: 17px;
+      color: var(--grey-4);
+      max-width: 480px;
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 56px;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 56px;
+    }
+
+    .pill {
+      background: var(--grey-1);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--grey-4);
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 20px;
+    }
+
+    .contact-block {
+      background: var(--grey-1);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 32px 48px;
+      text-align: center;
+    }
+
+    .contact-block p {
+      font-size: 13px;
+      color: var(--grey-3);
+      margin-bottom: 12px;
+    }
+
+    .contact-block a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    .contact-block a:hover { text-decoration: underline; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 24px 60px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--grey-3);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 20px 24px; flex-wrap: wrap; gap: 12px; }
+      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+      .contact-block { padding: 28px 24px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+  <a href="#" class="nav-logo"><span>ATI</span> Automation Time Invest</a>
+   <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('nl')">NL</button>
+    </div>
+    <span class="nav-badge" id="badge">Coming Soon</span>
+  </div>
+</nav>
+
+<main>
+  <p class="eyebrow" id="eyebrow">We're almost there</p>
+  <h1 id="headline">Something powerful<br/>is <em>coming soon.</em></h1>
+  <p class="sub" id="sub">We help small and medium businesses replace manual work with smart automation — so you can invest your time in what actually grows your company.</p>
+
+  <div class="pills" id="pills">
+    <span class="pill">Workflow Automation</span>
+    <span class="pill">System Integration</span>
+    <span class="pill">Process Consulting</span>
+  </div>
+
+  <div class="contact-block">
+    <p id="contact-label">Interested or have a question? Reach us at</p>
+    <a href="mailto:info@automationtimeinvest.com">info@automationtimeinvest.com</a>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Automation Time Invest — Netherlands</p>
+  <p>automationtimeinvest.com</p>
+</footer>
+
+<script>
+  const content = {
+    en: {
+      badge: 'Coming Soon',
+      eyebrow: "We're almost there",
+      headline: 'Something powerful<br/>is <em>coming soon.</em>',
+      sub: 'We help small and medium businesses replace manual work with smart automation, so you can invest your time in what actually grows your company.',
+      pills: ['Workflow Automation', 'System Integration', 'Process Consulting'],
+      contactLabel: 'Interested or have a question? Reach us at'
+    },
+    nl: {
+      badge: 'Binnenkort beschikbaar',
+      eyebrow: 'We zijn er bijna',
+      headline: 'Iets krachtigs is<br/><em>bijna hier.</em>',
+      sub: 'Wij helpen kleine en middelgrote bedrijven handmatig werk te vervangen door slimme automatisering, zodat jij je tijd kunt investeren in wat je bedrijf echt laat groeien.',
+      pills: ['Workflow Automatisering', 'Systeem Integratie', 'Proces Consultancy'],
+      contactLabel: 'Geïnteresseerd of een vraag? Stuur ons een mail op'
+    }
+  };
+
+  function setLang(lang) {
+    const c = content[lang];
+    document.getElementById('badge').textContent = c.badge;
+    document.getElementById('eyebrow').textContent = c.eyebrow;
+    document.getElementById('headline').innerHTML = c.headline;
+    document.getElementById('sub').textContent = c.sub;
+    document.getElementById('contact-label').textContent = c.contactLabel;
+
+    const pillsEl = document.getElementById('pills');
+    pillsEl.innerHTML = c.pills.map(p => `<span class="pill">${p}</span>`).join('');
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+    });
+
+    document.documentElement.lang = lang;
+  }
+</script>
+
+</body>
+</html>
